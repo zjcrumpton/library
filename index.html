@@ -7,7 +7,50 @@
   <title>Document</title>
 </head>
 <body>
-  
+  <div class="title-container">
+    <h1 id="title">My Library</h1>
+  </div>
+  <div class="title-container">
+    <button onclick="openForm()">New Book</button>
+  </div>
+
+  <div id="god-container">
+    <div id="library-container">
+      <div id="book-container"></div>
+    </div>
+  </div>
+
+
+
+  <div class="form-popup" id="myForm">
+    <button id="cancel" onclick="closeForm()">X</button>
+
+    <div class="form-container">
+      <h1>Book Info</h1>
+
+      <h3>Title:</h3>
+      <input type="text" name="title" id="book-title" class="field">
+
+      <h3>Author:</h3>
+      <input type="text" name="author" id="book-author" class="field">
+
+      <h3>Page Count:</h3>
+      <input type="number" name="pages" id="book-pages" class="field">
+
+      <h3>Have you read this?:</h3>
+      Yes <input type="radio" id="book-author" name="read" value="true" class="radio">
+      No <input type="radio" id="book-author" name="read" value="false" class="radio">
+
+      <button id="create" onclick="createBook()">Create</button>
+
+    </div>
+  </div>
+
+
+
+
 </body>
-<script src="objects.js"></script>
+<script src="objects.js">
+  renderBooks()
+</script>
 </html>
