@@ -6,7 +6,7 @@ function Book(title, author, pages, read) {
   this.pages = pages
   this.read = read
   this.info = function() {
-    return(`${title}, ${author}, ${pages}, ${read}`)
+    return(`${this.title}, ${this.author}, ${this.pages}, ${this.read}`)
   }
 }
 
@@ -20,7 +20,6 @@ function resetLibrary() {
   let godContainer = document.getElementById("god-container")
   if(libraryContainer != null) {
     let books = Array.from(libraryContainer.childNodes)
-    console.log(books)
     libraryContainer.remove()
     libraryContainer = document.createElement("DIV")
     libraryContainer.setAttribute("id", "library-container")
@@ -35,8 +34,27 @@ function renderBooks() {
 
   let library = document.getElementById("library-container")
 
+
+
   for (let book of myLibrary){
     let bookContainer = document.createElement("DIV")
+    let deleteButton = document.createElement("BUTTON")
+    deleteButton.textContent = "DELETE"
+    deleteButton.classList.add("cancel")
+    deleteButton.classList.add("card-cancel")
+
+    let readButton = document.createElement("BUTTON")
+    readButton.classList.add("read")
+    readButton.textContent = "READ"
+    addReadListener(readButton, bookContainer, library)
+    bookContainer.appendChild(readButton)
+
+
+
+
+
+    addDeleteListener(deleteButton, bookContainer, library)
+    bookContainer.appendChild(deleteButton)
 
     let info = document.createElement("P")
     info.innerText = book.info()
@@ -47,6 +65,24 @@ function renderBooks() {
     bookContainer.appendChild(info)
   }
 };
+
+function addDeleteListener(button, card, library) {
+  button.addEventListener("click", function() {
+    let books = Array.from(library.childNodes)
+    myLibrary.splice(books.indexOf(card), 1)
+    renderBooks()
+  })
+}
+
+function addReadListener(button, card, library) {
+  button.addEventListener("click", function() {
+    let books = Array.from(library.childNodes)
+    let cardToChange = myLibrary[books.indexOf(card)]
+    cardToChange.read == true ? (cardToChange['read'] = false) : (cardToChange['read'] = true)
+
+    renderBooks()
+  })
+}
 
 function openForm() {
   document.getElementById("myForm").style.display = "block";

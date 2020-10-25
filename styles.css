@@ -54,6 +54,15 @@ button {
   background-color: white;
 }
 
-#cancel {
+.cancel {
   color: red;
+  background: none;
+}
+.read {
+  color: green;
+  background: none;
+}
+
+.card-cancel {
+  margin-right:330px;
 }
